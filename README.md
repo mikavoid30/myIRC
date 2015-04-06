@@ -1,0 +1,2 @@
+# myIRC
+myIRC - Epitech project
