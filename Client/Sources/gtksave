@@ -1,0 +1,58 @@
+/*
+** gtk_main.c for Gtk_Main_C_ in /home/boulat_m/rendu/Projets_sem2/myIRC/GIT/myIRC/Client
+** 
+** Made by Mickael BOULAT
+** Login   <boulat_m@epitech.net>
+** 
+** Started on  Mon Apr  6 19:03:05 2015 Mickael BOULAT
+** Last update Tue Apr  7 15:49:21 2015 Mickael BOULAT
+*/
+
+# include "client.h"
+
+typedef struct	s_display
+{
+  GtkWidget	*_window;
+  GtkWidget	*_label;
+  GtkWidget	*_send_entry;
+  GtkWidget	*_send_button;
+  GtkWidget	*_main_entry;
+  GtkWidget	*_grid;
+  
+}		t_display;
+
+void	init_window(t_display *d)
+{
+  d->_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title(GTK_WINDOW(d->_window), "My Fucking IRC");
+  gtk_window_set_default_size(GTK_WINDOW(d->_window), 840, 480);
+  gtk_container_set_border_width(GTK_CONTAINER(d->_window), 10);
+  gtk_window_set_position(GTK_WINDOW(d->_window), GTK_WIN_POS_CENTER);
+
+  d->_label = gtk_label_new("My fucking IRC");
+  d->_send_entry = gtk_entry_new();
+  d->_main_entry = gtk_text_view_new();
+  d->_send_button = gtk_button_new_with_label("Send !");
+  d->_grid = gtk_grid_new();
+
+  gtk_container_add(GTK_CONTAINER(d->_window), GTK_WIDGET(d->_grid));
+  gtk_grid_attach(GTK_GRID(d->_grid), d->_send_entry, 0, 0, 50, 1);
+  gtk_grid_attach(GTK_GRID(d->_grid), d->_send_button, 51, 0, 50, 1);  
+  gtk_grid_attach(GTK_GRID(d->_grid), d->_main_entry, 0, 1, 100, 1);  
+
+  g_signal_connect(G_OBJECT(d->_send_button), "clicked", G_CALLBACK(gtk_main_quit), NULL);
+  g_signal_connect(G_OBJECT(d->_window), "delete-event", G_CALLBACK(gtk_main_quit), NULL);
+
+  
+}
+
+int	display(int *argc, char ***argv)
+{
+  t_display	d;
+
+  gtk_init(argc, argv);
+  init_window(&d);
+  gtk_widget_show_all(d._window);
+  gtk_main();
+ return (EXIT_SUCCESS);
+}

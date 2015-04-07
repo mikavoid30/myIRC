@@ -5,7 +5,7 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Apr  6 11:27:05 2015 Mickael BOULAT
-** Last update Mon Apr  6 11:28:31 2015 Mickael BOULAT
+** Last update Mon Apr  6 20:17:38 2015 Mickael BOULAT
 */
 
 # ifndef CLIENT_H_
@@ -15,10 +15,13 @@
 #  include <stdlib.h>
 #  include <stdio.h>
 #  include <strings.h>
+#  include <string.h>
 #  include <sys/types.h>
 #  include <sys/socket.h>
 #  include <netinet/in.h>
 #  include <arpa/inet.h>
+#  include <gtk/gtk.h>
+#  include <gdk/gdk.h>
 
 #  define BUFF_SIZE	256
 #  define LINE_SIZE	256
@@ -49,5 +52,5 @@ int			get_socket();
 int			close_socket(t_config *config);
 int			send_to_server(char *data, t_config *config);
 int			recieve_from_server(t_config *config);
-
+int			display(int *argc, char ***argv);
 # endif /* CLIENT_H_ */ 

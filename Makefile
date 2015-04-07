@@ -5,7 +5,7 @@
 ## Login   <boulat_m@epitech.net>
 ## 
 ## Started on  Mon Mar 23 09:37:06 2015 Mickael BOULAT
-## Last update Mon Apr  6 11:35:49 2015 Mickael BOULAT
+## Last update Tue Apr  7 10:59:08 2015 Mickael BOULAT
 ##
 
 ###################################################################
@@ -30,6 +30,7 @@ SERVER_PATH	=	./Server/
 
 SRCS_C		=	$(CLIENT_PATH)Sources/client.c		\
 			$(CLIENT_PATH)Sources/get_next_line.c	\
+			$(CLIENT_PATH)Sources/gtk_main.c	\
 			$(CLIENT_PATH)Sources/tcp_utils.c
 
 SRCS_S		=	$(SERVER_PATH)Sources/server.c
@@ -42,13 +43,14 @@ OBJS_C		=	$(SRCS_C:.c=.o)
 OBJS_S		=	$(SRCS_S:.c=.o)
 
 ###################################################################
-#                            Compilation
+#                            Flags / Compilation
 ###################################################################
 
-CC		=	clang
+CC		=	gcc
 
 CFLAGS		=	-W -Wall -Werror
-CFLAGS		+=	-I$(CLIENT_PATH)Includes -I$(SERVER_PATH)Includes
+CFLAGS		+=	-I/usr/include -I$(CLIENT_PATH)Includes -I$(SERVER_PATH)Includes
+CFLAGS		+=	`pkg-config --cflags gtk+-3.0 --libs gtk+-3.0`
 
 RM		=	rm -rf
 

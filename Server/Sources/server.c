@@ -5,7 +5,7 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Mar  9 17:49:13 2015 Mickael BOULAT
-** Last update Mon Apr  6 11:33:37 2015 Mickael BOULAT
+** Last update Tue Apr  7 16:45:31 2015 Mickael BOULAT
 */
 
 # include <unistd.h>
@@ -143,9 +143,16 @@ int		main(int ac, char **av)
     }
   if ((init_config(&config, av[1])) == -1)
     return (EXIT_FAILURE);
+ 
   listen_clients(&config);
-  accept_clients(&config);
-  recieve_from_client(&config);
+  while (1)
+    { 
+      accept_clients(&config);
+      while (1)
+	{
+	  recieve_from_client(&config);
+	}
+    }
   if ((close_sockets(&config)) == -1)
     status = EXIT_FAILURE;
   return (status);
