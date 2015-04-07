@@ -5,7 +5,7 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Mar  9 17:49:13 2015 Mickael BOULAT
-** Last update Tue Apr  7 16:45:31 2015 Mickael BOULAT
+** Last update Tue Apr  7 21:23:04 2015 Mickael BOULAT
 */
 
 # include <unistd.h>
@@ -17,6 +17,21 @@
 # include <netinet/in.h>
 # include <arpa/inet.h>
 # include "server.h"
+
+int     send_to_client(char *data, t_config *config)
+{
+  int   ret;
+  int   size;
+
+  ret = 0;
+  size = strlen(data);
+  ret = write(config->cSocketFd, data, size);
+  if (ret < 0)
+    perror("send_to_server");
+  else
+    printf("Data sent to client\n");
+  return (ret);
+}
 
 int	get_socket()
 {
@@ -122,6 +137,7 @@ int	recieve_from_client(t_config *config)
   else
     buff[size] = '\0';
   printf("Client send -> %s\n", buff);
+  send_to_client("YEEEES", config);
   return (ret);
 }
 

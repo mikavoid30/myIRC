@@ -6,7 +6,7 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Mar  9 17:49:13 2015 Mickael BOULAT
-** Last update Tue Mar 10 16:22:58 2015 Mickael BOULAT
+** Last update Tue Apr  7 21:23:31 2015 Mickael BOULAT
 */
 
 # include <unistd.h>
@@ -82,14 +82,15 @@ int	send_to_server(char *data, t_config *config)
   return (ret);
 }
 
-int	recieve_from_server(t_config *config)
+int     recieve_from_server(t_config *config)
 {
-  int	ret;
-  int	size;
-  char	buff[BUFF_SIZE];
+  int   ret;
+  int   size;
+  char  buff[256];
 
   ret = 0;
-  size = recv(config->socketFd, buff, sizeof (buff) - 1, 0);
+  bzero(buff, 256);
+  size = read(config->socketFd, buff, sizeof (buff));
   if (ret < 0)
     perror("recieve_from_server");
   else

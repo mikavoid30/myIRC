@@ -5,23 +5,31 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Mar  9 17:49:13 2015 Mickael BOULAT
-** Last update Tue Apr  7 16:26:23 2015 Mickael BOULAT
+** Last update Tue Apr  7 21:19:57 2015 Mickael BOULAT
 */
 
 # include "client.h"
 
-void	printf_color(char *data, char *color, int bold)
+int	recievee_from_server(t_config *config)
 {
-  if (!bold)
-    printf("%s %s %s\n", color, data, INIT);
+  int	ret;
+  int	size;
+  char	buff[256];
+
+  ret = 0;
+  bzero(buff, 256);
+  size = read(config->cSocketFd, buff, sizeof (buff));
+  if (ret < 0)
+    perror("recieve_from_client");
   else
-    printf("%s %s %s %s\n", color, BOLD, data, INIT);
+    buff[size] = '\0';
+  printf("Client send -> %s\n", buff);
+  return (ret);
 }
 
-void    print_prompt(char *color)
+void    print_prompt()
 {
-  printf_color("My FTP", color, 1);
-  printf_color(" $>", CYAN, 1);
+  printf("MyFuckingIRC ---$>");
 }
 
 void	usage()
@@ -46,7 +54,8 @@ int		main(int ac, char **av)
     return (EXIT_FAILURE);
   while (i < 10)
     {
-      send_to_server(get_next_line(0), &config);    
+      send_to_server(get_next_line(0), &config);
+      recieve_from_server(&config);
       i++;
     }
   //  display(&ac, &av);

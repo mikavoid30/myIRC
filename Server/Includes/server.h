@@ -5,7 +5,7 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Mar  9 17:49:22 2015 Mickael BOULAT
-** Last update Tue Mar 10 14:21:25 2015 Mickael BOULAT
+** Last update Tue Apr  7 21:20:20 2015 Mickael BOULAT
 */
 
 # ifndef SERVER_H_
@@ -17,6 +17,7 @@
 #  include <stdlib.h>
 #  include <stdio.h>
 #  include <strings.h>
+#  include <string.h>
 #  include <sys/types.h>
 #  include <sys/socket.h>
 #  include <netinet/in.h>

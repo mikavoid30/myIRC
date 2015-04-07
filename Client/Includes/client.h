@@ -5,7 +5,7 @@
 ** Login   <boulat_m@epitech.net>
 ** 
 ** Started on  Mon Apr  6 11:27:05 2015 Mickael BOULAT
-** Last update Mon Apr  6 20:17:38 2015 Mickael BOULAT
+** Last update Tue Apr  7 21:17:14 2015 Mickael BOULAT
 */
 
 # ifndef CLIENT_H_
@@ -40,6 +40,7 @@ typedef struct		s_config
 {
   int			port;
   int			socketFd;
+  int			cSocketFd;
   struct in_addr	*ipAddress;
   struct sockaddr_in	srv;
   struct sockaddr_in	clt;
